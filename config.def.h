@@ -32,6 +32,7 @@ static const char *colors[][3]      = {
 static const char *const autostart[] = {
 	"xterm", NULL,
 	"pipewire", NULL,
+	"slstatus", NULL,
 	NULL /* terminate */
 };
 
@@ -45,7 +46,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       0,	       0,           -1 },
+	/* { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 }, */
 };
 
 /* layout(s) */
@@ -77,6 +79,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "xterm", NULL };
+static const char *upbrightness[]   = { "xbacklight", "-inc", "10", NULL };
+static const char *downbrightness[] = { "xbacklight", "-dec", "10", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -95,7 +99,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|Mod1Mask,              XK_space,  setlayout,      {0} },
+	{ MODKEY,              XK_v,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -116,6 +120,8 @@ static const Key keys[] = {
 	{ 0,                     XF86XK_AudioMute,        spawn,          {.v = mutecmd } },
 	{ 0,                     XF86XK_AudioRaiseVolume, spawn,          {.v = volupcmd } },
 	{ 0,                     XF86XK_AudioLowerVolume, spawn,          {.v = voldowncmd } },
+	{ 0,            XF86XK_MonBrightnessUp,    spawn,          {.v = upbrightness } },
+	{ 0,            XF86XK_MonBrightnessDown,  spawn,          {.v = downbrightness } },
 };
 
 /* button definitions */
