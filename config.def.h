@@ -41,7 +41,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       0,	       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       0,	    0,           -1 },
+	{ "firefox",  "Places",   "Library",  0,            1,           -1 },
 	/* { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 }, */
 };
 
@@ -121,7 +122,10 @@ static const Key keys[] = {
 	{ 0,                     XF86XK_AudioLowerVolume, spawn,          {.v = voldowncmd } },
 	{ 0,            XF86XK_MonBrightnessUp,    spawn,          {.v = upbrightness } },
 	{ 0,            XF86XK_MonBrightnessDown,  spawn,          {.v = downbrightness } },
-	{ MODKEY|ShiftMask,            XK_l,  spawn,          {.v = dpmsoffcmd } },
+	{ MODKEY|Mod1Mask,            XK_l,  spawn,          {.v = dpmsoffcmd } },
+	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
+	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
+	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 };
 
 /* button definitions */
