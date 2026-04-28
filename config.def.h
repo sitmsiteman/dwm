@@ -32,7 +32,7 @@ static const char *const autostart[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "Term1", "Term2", "FM", "S", "G", "Docs", "Media", "Emacs", "Web" , "Scratch"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -42,9 +42,15 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "firefox",  NULL,       NULL,       1 << 8,	    0,           -1 },
+	{ "Emacs",  NULL,       NULL,       1 << 7,	    0,           -1 },
+	{ "mpv",  NULL,       NULL,       1 << 6,	    0,           -1 },
+	{ "Zathura",  NULL,       NULL,       1 << 5,	    0,           -1 },
+	{ "steam",  "steamwebhelper",       NULL,       1 << 3,	    0,           -1 },
+	{ "steam_app",  "steam_app",       NULL,       1 << 4,	    0,           -1 },
+	{ "st-256color",  NULL,       NULL,       0,	    0,           -1 },
 	{ "TelegramDesktop",  NULL,   NULL,  0,            1,           -1 },
 	{ "xdg-desktop-portal-lxqt",     NULL,       NULL,   0,    1,      -1 },
-	{ "Pcmanfm",     NULL,       NULL,       0,            1,           -1 },
+	{ "Pcmanfm",     NULL,       NULL,       1 << 2,            0,           -1 },
 };
 
 /* layout(s) */
