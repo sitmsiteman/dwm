@@ -34,7 +34,7 @@ static const char *const autostart[] = {
 
 /* tagging */
 static const char *tags[] = { "Term(1)", "Rem(2)", "Sys(3)", "Files(4)",
-			      "Doc(5)", "Art(6)", "Media(7)", "Ed(8)", "Web(9)" };
+			      "Doc(5)", "Art(6)", "Media(7)", "Ed(8)", "Web(9)", "Temp(-)" };
 
 static const Rule rules[]	 = {
 	/* xprop(1):
@@ -50,8 +50,10 @@ static const Rule rules[]	 = {
 	{"Zathura"			,NULL			,NULL	,1 << 4	,0	,-1},
 	{"steam"			,"steamwebhelper"	,NULL	,1 << 6	,0	,-1},
 	{"steam_app"			,NULL			,NULL	,1 << 6	,0	,-1},
+	{"gamescope"			,NULL			,NULL	,1 << 6	,0	,-1},
 	{"st-256color"			,NULL			,NULL	,1 << 0 ,0	,-1},
 	{"st-ssh"			,NULL			,NULL	,1 << 1	,0	,-1},
+	{"Drawterm"			,NULL			,NULL	,1 << 1	,0	,-1},
 	{"qemu-system"			,NULL			,NULL	,1 << 2 ,1	,-1},
 	{"TelegramDesktop"		,NULL			,NULL	,0	,1	,-1},
 	{"xdg-desktop-portal-lxqt"	,NULL			,NULL	,0	,1	,-1},
@@ -95,11 +97,14 @@ static const char *downbrightness[] = { "brightnessctl", "set", "5%-", NULL };
 static const char *mutecmd[]   = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
 static const char *volupcmd[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -131,6 +136,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+	TAGKEYS(                        XK_minus,                  9)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ 0,                     XF86XK_AudioMute,        spawn,          {.v = mutecmd } },
 	{ 0,                     XF86XK_AudioRaiseVolume, spawn,          {.v = volupcmd } },
