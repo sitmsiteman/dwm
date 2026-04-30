@@ -26,15 +26,25 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"st", "-e", "tmux", "new-session", "-A", "-s", "main", NULL,
-	"st", "-c", "st-ssh", "-e", "tmux", "new-session", "-A", "-s", "remote", NULL,
+	"st", "-c", "st-main", "-e", "tmux", "new-session", "-A", "-s", "main", NULL,
+	"st", "-c", "st-remote", "-e", "tmux", "new-session", "-A", "-s", "remote", NULL,
+	"st", "-c", "st-mail", "-e", "aerc", NULL,
 	"slstatus", NULL,
-	NULL /* terminate */
+        NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "Term(1)", "Rem(2)", "Sys(3)", "Files(4)",
-			      "Doc(5)", "Art(6)", "Media(7)", "Ed(8)", "Web(9)", "Temp(-)" };
+
+/*
+  1: Terminal                   6: Mail, messengers ...
+  2: SSH/Drawterm               7: Multimedia/Gaming
+  3: Output Qemu/Monitoring     8: Editors like acme, emacs, gimp ..
+  4: File Managers              9: Web
+  5: Documents                  -: Temp
+*/
+
+static const char *tags[] = { "Local", "Remote", "Out", "Files",
+			      "Docs", "Mail", "Media", "Ed", "Web", "-" };
 
 static const Rule rules[]	 = {
 	/* xprop(1):
@@ -42,7 +52,7 @@ static const Rule rules[]	 = {
 	 *	WM_NAME(STRING)	 = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{"Gimp"				,NULL			,NULL	,1 << 5	,1	,-1},
+	{"Gimp"				,NULL			,NULL	,1 << 7	,1	,-1},
 	{"firefox"			,NULL			,NULL	,1 << 8 ,0	,-1},
 	{"Emacs"			,NULL			,NULL	,1 << 7	,0	,-1},
 	{"acme"				,NULL			,NULL	,1 << 7	,0	,-1},
@@ -51,11 +61,13 @@ static const Rule rules[]	 = {
 	{"steam"			,"steamwebhelper"	,NULL	,1 << 6	,0	,-1},
 	{"steam_app"			,NULL			,NULL	,1 << 6	,0	,-1},
 	{"gamescope"			,NULL			,NULL	,1 << 6	,0	,-1},
-	{"st-256color"			,NULL			,NULL	,1 << 0 ,0	,-1},
-	{"st-ssh"			,NULL			,NULL	,1 << 1	,0	,-1},
+	{"st-256color"			,NULL			,NULL	,0	,0	,-1},
+	{"st-remote"			,NULL			,NULL	,1 << 1	,0	,-1},
+	{"st-main"			,NULL			,NULL	,1	,0	,-1},
+	{"st-mail"                      ,NULL                   ,NULL   ,1 << 5 ,0      ,-1},
 	{"Drawterm"			,NULL			,NULL	,1 << 1	,0	,-1},
 	{"qemu-system"			,NULL			,NULL	,1 << 2 ,1	,-1},
-	{"TelegramDesktop"		,NULL			,NULL	,0	,1	,-1},
+	{"TelegramDesktop"		,NULL			,NULL	,1 << 5	,1	,-1},
 	{"xdg-desktop-portal-lxqt"	,NULL			,NULL	,0	,1	,-1},
 	{"Pcmanfm"			,NULL			,NULL	,1 << 3	,0	,-1},
 };
@@ -88,7 +100,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", "-e", "tmux", "new-session", "-A", "-s", "main", NULL };
+static const char *termcmd[]  = { "st", "-e", "tmux", "new-session", "-A", "-s", "sub", NULL };
 static const char *screenshotcmd[]  = { "xshot.sh", NULL };
 static const char *toggledpmscmd[]  = { "toggle-dpms", NULL };
 static const char *dpmsoffcmd[] = { "xset", "dpms", "force", "off", NULL };
