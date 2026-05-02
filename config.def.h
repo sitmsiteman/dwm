@@ -66,8 +66,8 @@ static const Rule rules[]	 = {
 	{"st-main"			,NULL			,NULL	,1	,0	,-1},
 	{"st-mail"                      ,NULL                   ,NULL   ,1 << 5 ,0      ,-1},
 	{"Drawterm"			,NULL			,NULL	,1 << 1	,0	,-1},
-	{"qemu-system"			,NULL			,NULL	,1 << 2 ,1	,-1},
-	{"TelegramDesktop"		,NULL			,NULL	,1 << 5	,1	,-1},
+	{"Qemu-system"			,NULL			,NULL	,1 << 2 ,1	,-1},
+	{"TelegramDesktop"		,NULL			,NULL	,1 << 5	,0	,-1},
 	{"xdg-desktop-portal-lxqt"	,NULL			,NULL	,0	,1	,-1},
 	{"Pcmanfm"			,NULL			,NULL	,1 << 3	,0	,-1},
 };
