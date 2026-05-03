@@ -58,7 +58,7 @@ static const Rule rules[]	 = {
 	{"acme"				,NULL			,NULL	,1 << 7	,0	,-1},
 	{"mpv"				,NULL			,NULL	,1 << 6	,0	,-1},
 	{"Zathura"			,NULL			,NULL	,1 << 4	,0	,-1},
-	{"steam"			,"steamwebhelper"	,NULL	,1 << 6	,1	,-1},
+	{"steam"			,"steamwebhelper"	,NULL	,1 << 6	,0	,-1},
 	{"steam_app"			,NULL			,NULL	,1 << 6	,1	,-1},
 	{"gamescope"			,NULL			,NULL	,1 << 6	,1	,-1},
 	{"st-256color"			,NULL			,NULL	,0	,0	,-1},
