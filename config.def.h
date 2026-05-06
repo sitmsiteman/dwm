@@ -64,6 +64,7 @@ static const Rule rules[]	 = {
 
 	{"Gimp"				,NULL			,NULL	,1 << 7	,1	,-1},
 	{"chromium"			,NULL			,NULL	,1 << 8 ,0	,-1},
+	{"Chromium"			,NULL			,NULL	,1 << 8 ,0	,-1},
 	{"surf"				,NULL			,NULL	,1 << 8 ,0	,-1},
 	{"firefox"			,NULL			,NULL	,1 << 8 ,0	,-1},
 	{"Emacs"			,NULL			,NULL	,1 << 7	,0	,-1},
