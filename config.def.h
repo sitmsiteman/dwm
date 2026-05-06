@@ -14,8 +14,11 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 /* static const char *fonts[]          = { "Noto Sans CJK KR:size=10" }; */
 /* static const char dmenufont[]       = "Noto Sans CJK KR:size=10"; */
-static const char dmenufont[]       = "VGA:size=12:antialias=false";
-static const char *fonts[]          = { "NeoDunggeunmo:size=12:antialias=false", "DotGothic16:size=10:antialias=false", "Unifont:size=12:antialias=false" };
+static const char dmenufont[]       =   "NeoDunggeunmo:size=12:antialias=false";
+static const char *fonts[]          = { "NeoDunggeunmo:size=12:antialias=false",
+					"DotGothic16:size=10:antialias=false",
+					"Unifont:size=12:antialias=false",
+					"Noto Color Emoji:size=12:style=Regular"};
 /* Rio colorscheme */
 static const char col_rio_bg[]      = "#e9ffe9";
 static const char col_rio_fg[]      = "#000000";
