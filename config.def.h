@@ -38,7 +38,7 @@ static const char *colors[][3]      = {
 static const char *const autostart[] = {
 	"st", "-c", "st-main", "-e", "tmux", "new-session", "-A", "-s", "main", NULL,
 	"st", "-c", "st-remote", "-e", "tmux", "new-session", "-A", "-s", "remote", NULL,
-	"st", "-c", "st-mail", "-e", "aerc", NULL,
+	/* "st", "-c", "st-mail", "-e", "aerc", NULL, */
 	"slstatus", NULL,
         NULL /* terminate */
 };
@@ -49,12 +49,12 @@ static const char *const autostart[] = {
   1: Terminal                   6: Mail, messengers ...
   2: SSH/Drawterm               7: Multimedia/Gaming
   3: Output Qemu/Monitoring     8: Editors like acme, emacs, gimp ..
-  4: File Managers              9: Web
+  4: Chat			9: Web
   5: Documents                  -: Temp
 */
 
-static const char *tags[] = { "Local", "Remote", "Out", "Files",
-			      "Docs", "Mail", "Media", "Ed", "Web", "-" };
+static const char *tags[] = { "Local", "Remote", "Out", "Chat",
+			      "Mail", "Docs", "Media", "Ed", "Web", "!" };
 
 static const Rule rules[]	 = {
 	/* xprop(1):
@@ -69,19 +69,19 @@ static const Rule rules[]	 = {
 	{"Emacs"			,NULL			,NULL	,1 << 7	,0	,-1},
 	{"acme"				,NULL			,NULL	,1 << 7	,0	,-1},
 	{"mpv"				,NULL			,NULL	,1 << 6	,0	,-1},
-	{"Zathura"			,NULL			,NULL	,1 << 4	,0	,-1},
+	{"Zathura"			,NULL			,NULL	,1 << 5	,0	,-1},
 	{"steam"			,"steamwebhelper"	,NULL	,1 << 6	,0	,-1},
 	{"steam_app"			,NULL			,NULL	,1 << 6	,1	,-1},
 	{"gamescope"			,NULL			,NULL	,1 << 6	,1	,-1},
 	{"st-256color"			,NULL			,NULL	,0	,0	,-1},
 	{"st-remote"			,NULL			,NULL	,1 << 1	,0	,-1},
 	{"st-main"			,NULL			,NULL	,1	,0	,-1},
-	{"st-mail"                      ,NULL                   ,NULL   ,1 << 5 ,0      ,-1},
+	{"st-mail"                      ,NULL                   ,NULL   ,1 << 4 ,0      ,-1},
 	{"Drawterm"			,NULL			,NULL	,1 << 1	,0	,-1},
 	{"Qemu-system"			,NULL			,NULL	,1 << 2 ,1	,-1},
-	{"TelegramDesktop"		,NULL			,NULL	,1 << 5	,0	,-1},
+	{"TelegramDesktop"		,NULL			,NULL	,1 << 3	,0	,-1},
 	{"xdg-desktop-portal-lxqt"	,NULL			,NULL	,0	,1	,-1},
-	{"Pcmanfm"			,NULL			,NULL	,1 << 3	,0	,-1},
+	{"Pcmanfm"			,NULL			,NULL	,0	,1	,-1},
 };
 
 /* layout(s) */
@@ -113,12 +113,13 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 /* static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL }; */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_rio_bg, "-nf", col_rio_fg, "-sb", col_rio_act, "-sf", col_rio_fg, NULL };
-static const char *termcmd[]  = { "st", "-e", "tmux", "new-session", "-A", "-s", "sub", NULL };
+/* static const char *termcmd[]  = { "st", "-e", "tmux", "new-session", "-A", "-s", "sub", NULL }; */ 
+static const char *termcmd[]  = { "st", NULL };
 static const char *screenshotcmd[]  = { "xshot.sh", NULL };
 static const char *toggledpmscmd[]  = { "toggle-dpms", NULL };
 static const char *dpmsoffcmd[] = { "xset", "dpms", "force", "off", NULL };
-static const char *upbrightness[]   = { "brightnessctl", "set", "+5%", NULL };
-static const char *downbrightness[] = { "brightnessctl", "set", "5%-", NULL };
+static const char *upbrightness[]   = { "xbacklight", "+", "5", NULL };
+static const char *downbrightness[] = { "xbacklight", "-", "5", NULL };
 static const char *mutecmd[]   = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
 static const char *volupcmd[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
@@ -163,7 +164,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	TAGKEYS(                        XK_minus,                  9)
+	TAGKEYS(                        XK_exclam,                 9)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ 0,                     XF86XK_AudioMute,        spawn,          {.v = mutecmd } },
 	{ 0,                     XF86XK_AudioRaiseVolume, spawn,          {.v = volupcmd } },
