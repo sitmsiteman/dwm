@@ -15,7 +15,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 /* static const char *fonts[]          = { "Noto Sans CJK KR:size=10" }; */
 /* static const char dmenufont[]       = "Noto Sans CJK KR:size=10"; */
 static const char dmenufont[]       = "VGA:size=12:antialias=false";
-static const char *fonts[]          = { "VGA:size=12:antialias:false", "Unifont:size=12:antialias=false" };
+static const char *fonts[]          = { "VGA:size=12:antialias=false", "Unifont:size=12:weight=bold:antialias=false" };
 /* Rio colorscheme */
 static const char col_rio_bg[]      = "#e9ffe9";
 static const char col_rio_fg[]      = "#000000";
