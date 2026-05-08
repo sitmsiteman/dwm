@@ -63,11 +63,15 @@ static const Rule rules[]	 = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING)	 = title
+		class, instance, title, tag mask, floating, monitor
 	 */
+
 
 	{"Gimp"				,NULL			,NULL	,1 << 7	,1	,-1},
 	{"chromium"			,NULL			,NULL	,1 << 8 ,0	,-1},
 	{"Chromium"			,NULL			,NULL	,1 << 8 ,0	,-1},
+	{"Chromium"			,NULL			,"이미지 업로드 하기",1 << 8 ,1	,-1},
+	{"Chromium"			,"crx_"			,NULL	,1 << 8 ,1	,-1},
 	{"surf"				,NULL			,NULL	,1 << 8 ,0	,-1},
 	{"firefox"			,NULL			,NULL	,1 << 8 ,0	,-1},
 	{"Emacs"			,NULL			,NULL	,1 << 7	,0	,-1},
