@@ -57,8 +57,7 @@ static const char *const autostart[] = {
 */
 
 static const char *tags[] = { "Local", "Remote", "Out", "Chat",
-			      "Mail", "Docs", "Media", "Ed", "Web", "!" };
-
+			      "Mail", "Docs", "Media", "Ed", "Web", "-" };
 static const Rule rules[]	 = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -147,6 +146,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_equal,      setmfact,       {.f = 0.00} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
@@ -171,7 +171,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	TAGKEYS(                        XK_exclam,                 9)
+	TAGKEYS(                        XK_minus,                  9)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ 0,                     XF86XK_AudioMute,        spawn,          {.v = mutecmd } },
 	{ 0,                     XF86XK_AudioRaiseVolume, spawn,          {.v = volupcmd } },
